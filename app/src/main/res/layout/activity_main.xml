@@ -25,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:orientation="vertical"
         android:gravity="center">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -38,6 +39,7 @@
             </View>
 
             <Button
+                android:id="@+id/btn_start_game"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="50dp"
@@ -46,6 +48,58 @@
                 android:text="@string/start_game"
                 android:textColor="#fff"
                 android:textSize="20sp"
+                android:textStyle="bold"></Button>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+            <View
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#FFEB3B">
+            </View>
+
+            <Button
+                android:id="@+id/btn_tutorial"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/bg_btn"
+                android:text="@string/tutorial_game"
+                android:textColor="#fff"
+                android:textSize="20sp"
+
+                android:textStyle="bold"></Button>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+            <View
+                android:layout_centerInParent="true"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#FFEB3B">
+            </View>
+
+            <Button
+                android:id="@+id/btn_high_score"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/bg_btn"
+                android:text="@string/high_score_game"
+                android:textColor="#fff"
+                android:textSize="20sp"
+
                 android:textStyle="bold"></Button>
 
         </RelativeLayout>
