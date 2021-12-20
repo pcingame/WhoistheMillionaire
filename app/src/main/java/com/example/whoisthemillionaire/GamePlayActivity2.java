@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.whoisthemillionaire.adapter.PrizeMoneyAdapter;
+import com.example.whoisthemillionaire.object.DialoAudienceReplied;
+import com.example.whoisthemillionaire.object.FakeData;
 import com.example.whoisthemillionaire.object.Question;
 
 import java.util.ArrayList;
@@ -21,36 +24,38 @@ public class GamePlayActivity2 extends AppCompatActivity {
     PrizeMoneyAdapter prizeMoneyAdapter;
     ArrayList<String> arrPrizeMoney;
     Question question;
+
     TextView tvQuestion, tvAnswer1, tvAnswer2, tvAnswer3, tvAnswer4, tvLoseGame;
+    ImageView imgHepl5050, imgHeplAudience, imgHeplPhone, imgHelpExchange;
     int posOfQuestion = 1;
     ArrayList<TextView> arrTvAnswer;
+    FakeData fakeData;
+    View.OnClickListener listener;
+    String answer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_play2);
         initView();
-        setAdapter();
+        setUp();
         setAnswer();
-        setQuestion();
         showQuestion();
         setClick();
+        setHepl();
+        
 
 
     }
 
-    private void setQuestion() {
-        question = new Question();
-        question.setContent("Gần mực thì đen gần đèn thì... ");
-        question.setCorrectAns("rạng");
-        ArrayList<String> arrIncorrectAns = new ArrayList<>();
-        arrIncorrectAns.add("rõ");
-        arrIncorrectAns.add("mờ");
-        arrIncorrectAns.add("trắng");
-        question.setArrIncorrectAns(arrIncorrectAns);
+
+    public void setQuestion() {
+
+        question = fakeData.question(posOfQuestion);
     }
 
-    private void setAdapter() {
+    private void setUp() {
         arrPrizeMoney = new ArrayList<>();
         arrPrizeMoney.add("150.000.000");
         arrPrizeMoney.add("85.000.000");
@@ -70,6 +75,8 @@ public class GamePlayActivity2 extends AppCompatActivity {
 
         prizeMoneyAdapter = new PrizeMoneyAdapter(this, 0, arrPrizeMoney);
         lvPrizeMoney.setAdapter(prizeMoneyAdapter);
+        question = new Question();
+        fakeData = new FakeData();
 
     }
 
@@ -80,6 +87,10 @@ public class GamePlayActivity2 extends AppCompatActivity {
         tvAnswer2 = findViewById(R.id.tv_answer_2);
         tvAnswer3 = findViewById(R.id.tv_answer_3);
         tvAnswer4 = findViewById(R.id.tv_answer_4);
+        imgHepl5050 = findViewById(R.id.help_5050);
+        imgHelpExchange = findViewById(R.id.help_exchange_question);
+        imgHeplAudience = findViewById(R.id.help_audience);
+        imgHeplPhone = findViewById(R.id.help_phone);
         tvLoseGame = findViewById(R.id.tv_lose_game);
         tvLoseGame.setVisibility(View.GONE);
 
@@ -91,9 +102,11 @@ public class GamePlayActivity2 extends AppCompatActivity {
         arrTvAnswer.add(tvAnswer2);
         arrTvAnswer.add(tvAnswer3);
         arrTvAnswer.add(tvAnswer4);
+
     }
 
     public void showQuestion() {
+        setQuestion();
         tvQuestion.setText(question.getContent());
         ArrayList<String> arrAnswer = new ArrayList<>(question.getArrIncorrectAns());
         arrAnswer.add(question.getCorrectAns());
@@ -107,16 +120,18 @@ public class GamePlayActivity2 extends AppCompatActivity {
             arrAnswer.set(pos2, a);
         }
 
-        for (int i = 0; i <arrTvAnswer.size(); i++){
-            arrTvAnswer.get(i).setBackgroundResource(R.drawable.bg_btn);
-            arrTvAnswer.get(i).setText(arrAnswer.get(i));
+        for (int q = 0; q < arrTvAnswer.size(); q++){
+            arrTvAnswer.get(q).setOnClickListener(listener);
+            arrTvAnswer.get(q).setVisibility(View.VISIBLE);
+            arrTvAnswer.get(q).setBackgroundResource(R.drawable.bg_btn);
+            arrTvAnswer.get(q).setText(arrAnswer.get(q));
         }
 
         prizeMoneyAdapter.setPosOfQuestion(posOfQuestion);
     }
 
     private void setClick() {
-        View.OnClickListener listener = new View.OnClickListener() {
+         listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkAnswer(((TextView) view));
@@ -128,7 +143,7 @@ public class GamePlayActivity2 extends AppCompatActivity {
     }
 
     private void checkAnswer(TextView tvAnswer) {
-        String answer = tvAnswer.getText().toString();
+        answer = tvAnswer.getText().toString();
         tvAnswer.setBackgroundResource(R.drawable.bg_choose_ans);
 
         new CountDownTimer(2000, 100){
@@ -157,8 +172,11 @@ public class GamePlayActivity2 extends AppCompatActivity {
                     public void onFinish() {
                         if (answer.equals(question.getCorrectAns())) {
                             posOfQuestion++;
-                            if (posOfQuestion >= 15) {
+                            if (posOfQuestion > 15) {
                                 posOfQuestion = 15;
+                                tvLoseGame.setVisibility(View.VISIBLE);
+                                tvLoseGame.setText("Chúc mừng bạn đã được \n" + arrPrizeMoney.get(0) + " VNĐ");
+                                return;
                             }
                             showQuestion();
                         }else {
@@ -171,7 +189,58 @@ public class GamePlayActivity2 extends AppCompatActivity {
                 }.start();
             }
         }.start();
+    }
 
+    boolean hepl_fifty = true;
+    boolean isHeplAudience = true;
+    boolean isHeplExchange = true;
+    public void setHepl() {
+        imgHepl5050.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!hepl_fifty){
+                    return;
+                }
+                Random random = new Random();
+                int numOfAnsHide = 2;
+                do{
+                    int posOfAns = random.nextInt(4);
+                    TextView textView = arrTvAnswer.get(posOfAns);
 
+                    if(textView.getVisibility() == View.VISIBLE && !textView.getText().toString().equals(question.getCorrectAns())){
+                        textView.setVisibility(View.INVISIBLE);
+                        textView.setOnClickListener(null);
+                        numOfAnsHide --;
+                    }
+                }while (numOfAnsHide>0);
+                hepl_fifty = false;
+            }
+        });
+        imgHeplAudience.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isHeplAudience){
+                    return;
+                }
+                for (int i = 0; i<arrTvAnswer.size(); i++){
+                    TextView textView = arrTvAnswer.get(i);
+                    if(textView.getText().toString().equals(question.getCorrectAns())){
+                        new DialoAudienceReplied(GamePlayActivity2.this, i + 1).show();
+                        break;
+                    }
+                }
+                isHeplAudience = false;
+            }
+        });
+        imgHelpExchange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!isHeplExchange){
+                    return;
+                }
+                showQuestion();
+                isHeplExchange = false;
+            }
+        });
     }
 }

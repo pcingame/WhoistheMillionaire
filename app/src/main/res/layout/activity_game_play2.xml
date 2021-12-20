@@ -25,13 +25,14 @@
                     android:orientation="horizontal"
                     android:gravity="center">
                     <ImageView
+                        android:id="@+id/help_5050"
                         android:padding="0dp"
                         android:layout_width="60dp"
                         android:layout_height="50dp"
                         android:src="@drawable/help_5050"
                         android:layout_marginRight="10dp"/>
                     <ImageView
-
+                        android:id="@+id/help_audience"
                         android:padding="0dp"
                         android:layout_width="60dp"
                         android:layout_height="50dp"
@@ -43,12 +44,14 @@
                         android:layout_height="match_parent"
                         android:src="@drawable/logow"/>
                     <ImageView
+                        android:id="@+id/help_phone"
                         android:padding="0dp"
                         android:layout_width="60dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/paf"/>
                     <ImageView
+                        android:id="@+id/help_exchange_question"
                         android:padding="0dp"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
