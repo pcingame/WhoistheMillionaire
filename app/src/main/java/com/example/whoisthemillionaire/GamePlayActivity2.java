@@ -20,13 +20,13 @@ import java.util.Random;
 
 public class GamePlayActivity2 extends AppCompatActivity {
 
-    ListView lvPrizeMoney;
-    PrizeMoneyAdapter prizeMoneyAdapter;
+    private ListView lvPrizeMoney;
+    private PrizeMoneyAdapter prizeMoneyAdapter;
     ArrayList<String> arrPrizeMoney;
     Question question;
 
-    TextView tvQuestion, tvAnswer1, tvAnswer2, tvAnswer3, tvAnswer4, tvLoseGame;
-    ImageView imgHepl5050, imgHeplAudience, imgHeplPhone, imgHelpExchange;
+    private TextView tvQuestion, tvAnswer1, tvAnswer2, tvAnswer3, tvAnswer4, tvLoseGame;
+    private ImageView imgHepl5050, imgHeplAudience, imgHeplPhone, imgHelpExchange;
     int posOfQuestion = 1;
     ArrayList<TextView> arrTvAnswer;
     FakeData fakeData;
@@ -76,7 +76,7 @@ public class GamePlayActivity2 extends AppCompatActivity {
         prizeMoneyAdapter = new PrizeMoneyAdapter(this, 0, arrPrizeMoney);
         lvPrizeMoney.setAdapter(prizeMoneyAdapter);
         question = new Question();
-        fakeData = new FakeData();
+        fakeData = new FakeData(this);
 
     }
 
@@ -119,6 +119,7 @@ public class GamePlayActivity2 extends AppCompatActivity {
             arrAnswer.set(pos1, arrAnswer.get(pos2));
             arrAnswer.set(pos2, a);
         }
+
 
         for (int q = 0; q < arrTvAnswer.size(); q++){
             arrTvAnswer.get(q).setOnClickListener(listener);
