@@ -3,4 +3,10 @@
     <string name="start_game">Bắt đầu</string>
     <string name="tutorial_game">Hướng dẫn</string>
     <string name="high_score_game">Điểm cao</string>
+    <string name="thank">Cảm ơn khán giả</string>
+    <string name="ask_phone">Bạn muốn gọi điện cho nhà thông thái nào ?</string>
+    <string name="arbert_einstein">Albert Einstein</string>
+    <string name="nikola_tesla">Nikola Tesla</string>
+    <string name="isaac_newton">Isacc Newton</string>
+    <string name="leonardo_da_vinci">Leonardo da Vinci</string>
 </resources>

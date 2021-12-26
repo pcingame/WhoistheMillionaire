@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#6A127A"
-    tools:context=".GamePlayActivity2">
+    tools:context=".activity.GamePlayActivity2">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,33 +27,38 @@
                     <ImageView
                         android:id="@+id/help_5050"
                         android:padding="0dp"
-                        android:layout_width="60dp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:src="@drawable/help_5050"
                         android:layout_marginRight="10dp"/>
                     <ImageView
                         android:id="@+id/help_audience"
                         android:padding="0dp"
-                        android:layout_width="60dp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:src="@drawable/ata"
                         android:layout_marginRight="10dp"/>
                     <ImageView
+                        android:layout_weight="1"
                         android:layout_marginTop="5dp"
-                        android:layout_width="70dp"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/logow"/>
                     <ImageView
+                        android:layout_weight="1"
                         android:id="@+id/help_phone"
                         android:padding="0dp"
-                        android:layout_width="60dp"
+                        android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/paf"/>
                     <ImageView
+                        android:layout_weight="1"
                         android:id="@+id/help_exchange_question"
                         android:padding="0dp"
-                        android:layout_width="50dp"
+                        android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:src="@drawable/ic_baseline_refresh_24"
                         android:layout_marginLeft="10dp"/>
@@ -74,6 +79,7 @@
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/bg_btn"
                         android:gravity="center"
+                        android:padding="10dp"
                         android:text=""
                         android:textColor="#fff"
                         android:textSize="20sp" />
@@ -94,17 +100,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="3dp"
                         android:background="#FFEB3B"/>
+
                     <TextView
                         android:id="@+id/tv_answer_1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="50dp"
                         android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
                         android:background="@drawable/bg_btn"
+                        android:gravity="center"
                         android:text=""
                         android:textColor="#fff"
-                        android:gravity="center"
-                        android:textSize="18sp"/>
+                        android:textSize="18sp" />
                 </RelativeLayout>
                 <RelativeLayout
                     android:layout_marginTop="20dp"
@@ -174,17 +181,35 @@
                 </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
-        <TextView
-            android:visibility="gone"
-            android:id="@+id/tv_lose_game"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:textSize="25sp"
-            android:text="dsadsads"
-            android:background="#673AB7"/>
+            android:orientation="vertical">
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_lose_game"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:background="#673AB7"
+                android:textSize="25sp"
+                />
+            <!--<Button
+                android:id="@+id/btn_back_to_main"
+                android:visibility="gone"
+                android:layout_weight="1"
+                android:background="#673AB7"
+                android:text="Quay lại màn hình chính"
+                android:gravity="bottom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </Button>-->
+        </LinearLayout>
+
     </RelativeLayout>
     <RelativeLayout
         android:background="#6A127A"
